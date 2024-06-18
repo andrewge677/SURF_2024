@@ -1,0 +1,174 @@
+Script started on 2024-06-13 02:52:16-0700
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task[00m$ cd c[Kscripts/
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task/scripts[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task/scripts[00m$ cd scripts/[K
+bash: cd: scripts: No such file or directory
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task/scripts[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task/scripts[00m$ ls
+[0m[01;32mfirst_task.py[0m  movearm.py
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task/scripts[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task/scripts[00m$ chmod +x movearm.py
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task/scripts[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task/scripts[00m$ chmod +x movearm
+chmod: cannot access 'movearm': No such file or directory
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task/scripts[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task/scripts[00m$ chmod +x movearm
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task/scripts[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task/scripts[00m$ cd ..
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task[00m$ catmake[K[K[K[Kkin make
+catkin: command not found
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task[00m$ catkin make[1Pmake_make
+Base path: /home/student/ros_ws/src/first_task
+[31mThe specified base path [1m"/home/student/ros_ws/src/first_task"[22m contains a package but "catkin_make" must be invoked in the root of workspace[0m
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src/first_task[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src/first_task[00m$ cd ..
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws/src[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws/src[00m$ cd ..
+__ros_prompt: command not found
+]0;student@SIE-1141-009: ~/ros_ws[01;32mstudent@SIE-1141-009[00m:[01;34m~/ros_ws[00m$ cd ..atkin_make
+Base path: /home/student/ros_ws
+Source space: /home/student/ros_ws/src
+Build space: /home/student/ros_ws/build
+Devel space: /home/student/ros_ws/devel
+Install space: /home/student/ros_ws/install
+[34m####[0m
+[34m#### Running command: [1m"make cmake_check_build_system"[0m[34m in [1m"/home/student/ros_ws/build"[0m
+[34m####[0m
+[34m####[0m
+[34m#### Running command: [1m"make -j16 -l16"[0m[34m in [1m"/home/student/ros_ws/build"[0m
+[34m####[0m
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_RobotAssemblyState
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_DigitalIOState
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_JointCommand
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CalibrationCommandActionResult
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_AnalogOutputCommand
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IODeviceStatus
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_EndpointState
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_EndpointStates
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_HomingCommand
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CollisionAvoidanceState
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CalibrationCommandResult
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_NavigatorStates
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_URDFConfiguration
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_InteractionControlState
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CollisionDetectionState
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_HomingState
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IONodeConfiguration
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IOComponentConfiguration
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_DigitalIOStates
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CalibrationCommandActionFeedback
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_HeadPanCommand
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IOComponentStatus
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IOComponentCommand
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CalibrationCommandGoal
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_EndpointNamesArray
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_JointLimits
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_SEAJointState
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IODeviceConfiguration
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IONodeStatus
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_SolvePositionFK
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_AnalogIOState
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CalibrationCommandFeedback
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CalibrationCommandActionGoal
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CameraControl
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CameraSettings
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_HeadState
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_InteractionControlCommand
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_AnalogIOStates
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_DigitalOutputCommand
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_CalibrationCommandAction
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_SolvePositionIK
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IOStatus
+[  0%] Built target actionlib_msgs_generate_messages_eus
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IODataStatus
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target actionlib_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_IOComponentCommandSrv
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target actionlib_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target _intera_core_msgs_generate_messages_check_deps_NavigatorState
+[  0%] Built target actionlib_msgs_generate_messages_py
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_MotionCommandFeedback
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_Trajectory
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_MotionStatus
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_InterpolatedPath
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_TrajectoryAnalysis
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_MotionCommandResult
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_WaypointOptions
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_MotionCommandActionGoal
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_MotionCommandActionResult
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_TrajectoryOptions
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_WaypointSimple
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_JointTrackingError
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_EndpointTrackingError
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_MotionCommandGoal
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_TrackingOptions
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_MotionCommandActionFeedback
+[  0%] Built target roscpp_generate_messages_eus
+[  0%] Built target controller_manager_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_eus
+[  0%] Built target rosgraph_msgs_generate_messages_nodejs
+[  0%] Built target dynamic_reconfigure_generate_messages_py
+[  0%] Built target roscpp_generate_messages_nodejs
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target dynamic_reconfigure_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target _intera_motion_msgs_generate_messages_check_deps_Waypoint
+[  0%] Built target control_msgs_generate_messages_cpp
+[  3%] Built target sns_ik
+[  3%] Built target dynamic_reconfigure_generate_messages_eus
+[  3%] Built target _intera_motion_msgs_generate_messages_check_deps_MotionCommandAction
+[  3%] Built target dynamic_reconfigure_gencfg
+[  3%] Built target actionlib_generate_messages_py
+[  3%] Built target control_msgs_generate_messages_nodejs
+[  3%] Built target actionlib_generate_messages_lisp
+[  3%] Built target control_msgs_generate_messages_eus
+[  3%] Built target actionlib_generate_messages_nodejs
+[  3%] Built target trajectory_msgs_generate_messages_nodejs
+[  3%] Built target dynamic_reconfigure_generate_messages_cpp
+[  3%] Built target actionlib_generate_messages_cpp
+[  3%] Built target control_msgs_generate_messages_lisp
+[  3%] Built target actionlib_generate_messages_eus
+[  3%] Built target trajectory_msgs_generate_messages_cpp
+[  3%] Built target dynamic_reconfigure_generate_messages_lisp
+[  3%] Built target trajectory_msgs_generate_messages_py
+[  3%] Built target control_msgs_generate_messages_py
+[  3%] Built target trajectory_msgs_generate_messages_eus
+[  3%] Built target trajectory_msgs_generate_messages_lisp
+[  3%] Built target gazebo_msgs_generate_messages_py
+[  3%] Built target std_srvs_generate_messages_cpp
+[  3%] Built target gazebo_msgs_generate_messages_eus
+[  3%] Built target std_srvs_generate_messages_lisp
+[  3%] Built target gazebo_msgs_generate_messages_lisp
+[  3%] Built target gazebo_msgs_generate_messages_nodejs
+[  3%] Built target gazebo_msgs_generate_messages_cpp
+[  3%] Built target control_toolbox_generate_messages_py
+[  3%] Built target std_srvs_generate_messages_py
+[  3%] Built target std_srvs_generate_messages_nodejs
+[  3%] Built target std_srvs_generate_messages_eus
+[  3%] Built target control_toolbox_gencfg
+[  3%] Built target control_toolbox_generate_messages_eus
+[  3%] Built target tf_generate_messages_py
+[  3%] Built target control_toolbox_generate_messages_nodejs
+[  3%] 
