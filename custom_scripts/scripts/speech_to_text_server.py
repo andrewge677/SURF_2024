@@ -3,6 +3,9 @@
 import rospy
 from std_msgs.msg import String
 import requests
+import os
+
+TRANSCRIPTION_PATH = '/home/student/ros_ws/src/custom_scripts/transcripts/transcription.txt'
 
 def recognize_speech():
     try:
@@ -20,9 +23,15 @@ def speech_client_node():
 
     while not rospy.is_shutdown():
         recognized_text = recognize_speech()
+        print("Received: {}", recognized_text)
         if recognized_text:
-            rospy.loginfo(recognized_text)
-            pub.publish(recognized_text)
+            rospy.loginfo("ROS loginfo: {}".format(recognized_text))
+	
+        with open(TRANSCRIPTION_PATH, 'w') as f:
+            f.write(recognized_text)
+            os.chmod(TRANSCRIPTION_PATH, 0o600)  # Owner read/write (rw-------)
+
+        pub.publish(recognized_text)
         rate.sleep()
 
 if __name__ == '__main__':

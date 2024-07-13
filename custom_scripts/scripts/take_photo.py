@@ -8,7 +8,7 @@ import argparse
 
 # realsense camera functionality does not work, also need to turn on stream before taking photo in this program
 
-HEAD_CAMERA_TOPIC = "/io/internal_camera/head_camera/image_raw"
+HEAD_CAMERA_TOPIC = "/io/internal_camera/head_camera/image_rect_color"
 ARM_CAMERA_TOPIC = "/io/internal_camera/right_hand_camera/image_raw"			# not functional, needs conversion from mono8 encoding functionality
 REALSENSE_CAMERA_TOPIC = "/camera/color/image_raw"
 
@@ -33,7 +33,7 @@ def callback(data, args):
 		else:
 			print("encoding not recognized")
 
-		cv2.imwrite('/home/student/ros_ws/src/custom_scripts/images/{}.png'.format(filename), image_array)		
+		cv2.imwrite('/home/student/ros_ws/src/custom_scripts/images/{}.jpg'.format(filename), image_array)		
 
 		rospy.signal_shutdown('Program end.')		
 

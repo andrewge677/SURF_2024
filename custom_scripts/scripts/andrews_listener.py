@@ -113,7 +113,7 @@ def listen_and_transcribe(transcription_node):
 
 def main():
     global transcription_node
-    rospy.init_node('sr_listener', anonymous=True)
+    rospy.init_node('andrews_listener', anonymous=True)
     transcription_node = rospy.Publisher('/transcription', String, queue_size=10)
 
     rospy.on_shutdown(shutdown_hook)

@@ -11,21 +11,34 @@ class ImageCapture:
         self.image_received = False
 
     def image_callback(self, msg):
-        if not self.image_received:
-            try:
-                cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
+        try:
+            if not self.image_received:
+                # Convert the image to a cv2 image
+                cv_image = self.bridge.imgmsg_to_cv2(msg, "16UC1")
                 self.image_received = True
-                self.image_sub.unregister()  # Unsubscribe from the topic
-                cv2.imwrite("/home/student/ros_ws/src/custom_scripts/images/rs_captured_image.jpg", cv_image)  # Save the image to images folder
-                rospy.loginfo("Image captured and saved as realsense_captured_image.jpg")
-            except CvBridgeError as e:
-                rospy.logerr(e)
-            except Exception as ex:
-                rospy.logerr(ex)
+                # Save the image in its original format
+                cv2.imwrite("/home/student/ros_ws/src/custom_scripts/images/rs_captured_image.png", cv_image)  # Save the image to images folder
+                rospy.loginfo("Image captured and saved as rs_captured_image.png")
+                rospy.signal_shutdown("Image captured, shutting down.")  # Shutdown ROS node
+        except CvBridgeError as e:
+            rospy.logerr("CvBridge Error: %s", e)
+        except Exception as ex:
+            rospy.logerr("Exception: %s", ex)
 
 def main():
     rospy.init_node('image_capture', anonymous=True)
     image_capture = ImageCapture()
+    
+    # Ensure the ROS node waits for the image topic to be available
+    rospy.loginfo("Waiting for image topic...")
+
+    try:
+        rospy.wait_for_message('/camera/color/image_raw', Image, timeout=10)
+        rospy.loginfo("Image topic detected. Capturing image...")
+    except rospy.ROSException as e:
+        rospy.logerr("Timeout waiting for image topic. Ensure the topic is being published: %s", e)
+        rospy.signal_shutdown("Timeout waiting for image topic")
+
     rospy.spin()
 
 if __name__ == '__main__':
