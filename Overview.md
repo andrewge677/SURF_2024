@@ -1,5 +1,14 @@
 # SURF_2024
-CSU Channel Islands SURF Summer Research
+CSU Channel Islands SURF Summer Research <br>
+
+Student Researchers: <br>
+Andrew Ge <br>
+Sheldon Peters <br>
+Alejandro Antonio <br>
+
+Research Mentors: <br>
+Dr. Abbasi <br>
+Dr. Isaacs <br>
 
 Summer Surf 2024 Technical Documentation: <br>
 https://docs.google.com/document/d/1eSpenHqlkqRHNvWpHtizz2qoFf9gMP56MRsDQyWa9ww/edit?usp=sharing 
