@@ -1,10 +1,10 @@
 # SURF_2024
 CSU Channel Islands SURF Summer Research
 
-Summer Surf 2024 Documentation: <br>
+Summer Surf 2024 Technical Documentation: <br>
 https://docs.google.com/document/d/1eSpenHqlkqRHNvWpHtizz2qoFf9gMP56MRsDQyWa9ww/edit?usp=sharing 
 
-Summer Surf 2024 Weekly Rough Notes: <br>
+Summer Surf 2024 Weekly Logs: <br>
 https://docs.google.com/document/d/11LDD7uXjzUDdhyWEG-GR4xDWrnNkQaSV5q-feGGx5Fs/edit?usp=sharing 
 
 Acknowledgements: <br>
