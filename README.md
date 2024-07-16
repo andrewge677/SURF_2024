@@ -6,7 +6,7 @@ Student Researchers: <br>
 - Sheldon Peters <br>
 - Alejandro Antonio <br>
 
-Research Mentors: <br>
+Faculty Mentors: <br>
 - Dr. Abbasi <br>
 - Dr. Isaacs <br>
 
