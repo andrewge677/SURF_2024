@@ -1,4 +1,4 @@
-# SURF_2024
+# SURF 2024
 CSU Channel Islands SURF Summer Research <br>
 
 Student Researchers: <br>
