@@ -22,4 +22,4 @@ Acknowledgements: <br>
 - Cobalt Team Representatives <br>
 
 Credits: <br>
-OpenAI, Intel, Python, Rviz, ROS, Unbuntu, and Rethink Robotics
+OpenAI, Intel, Python, Rviz, ROS, Unbuntu, Google Speech API and Rethink Robotics
