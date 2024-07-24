@@ -4,7 +4,7 @@ CSU Channel Islands SURF Summer Research <br>
 Student Researchers: <br>
 - Andrew Ge <br>
 - Sheldon Peters <br>
-- Alejandro Antonio <br>
+- Alejandro "AJ" Antonio <br>
 
 Faculty Mentors: <br>
 - Dr. Bahareh Abbasi <br>
