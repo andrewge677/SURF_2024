@@ -21,6 +21,8 @@ In this project, we utilize Sawyer, a robotic arm equipped with a state-of-the-a
 Summer Surf 2024 Technical Documentation: <br>
 https://docs.google.com/document/d/1eSpenHqlkqRHNvWpHtizz2qoFf9gMP56MRsDQyWa9ww/edit?usp=sharing
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pQpPl6OKRNQ?si=ZFaCX8g_DBmNHnIn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 Acknowledgements: <br>
 - Maximilian Seligman <br>
 - SURF Staff <br>
