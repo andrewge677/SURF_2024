@@ -1,4 +1,4 @@
-# SURF 2024
+# SURF 2024: Robotic Control for Object Manipulation Using Artificial Intelligence
 CSU Channel Islands SURF Summer Research <br>
 
 Student Researchers: <br>
