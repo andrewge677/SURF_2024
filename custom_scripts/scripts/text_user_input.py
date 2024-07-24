@@ -2,10 +2,11 @@
 import rospy
 from std_msgs.msg import String
 
+TRANSCRIPTION_PATH = '/home/student/ros_ws/src/custom_scripts/transcripts/transcription.txt'
+
 def input_talker():
-    # Initialize the ROS node named 'speech_to_text'
     rospy.init_node('speech_to_text', anonymous=True)
-    # Create a publisher that will publish on the 'transcription' topic
+    rospy.loginfo("text_user_input.py entered. enter 'quit' or 'exit' to end.")
     pub = rospy.Publisher('transcription', String, queue_size=10)
     rate = rospy.Rate(1) # 1 Hz
 
@@ -15,8 +16,11 @@ def input_talker():
         if(input_str == "quit" or input_str == "exit"):
             break
 
+        with open(TRANSCRIPTION_PATH, 'w') as f:
+            f.write(input_str) 
         pub.publish(input_str)
         rate.sleep()
+    rospy.loginfo("text_user_input.py exiting")
 
 if __name__ == '__main__':
     try:

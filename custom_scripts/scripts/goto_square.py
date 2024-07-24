@@ -40,12 +40,19 @@ GRAB_POSITION = [       # 12 squares with 7 joint angles each
 ]
 
 def goto_square(square_num):
-    square_num = int(square_num)
+    """
+    goto_square move the arm with custom gripper to position above square
+    to avoid knocking over objects, then completes the trajectory by moving it in place to later grab.
 
-    # rospy.loginfo("Moving to square {square_num}")
+    takes in str or integer number 1 through 12 inclusive. Grid increases left to right and bottom to 
+    top, with 1 in the bottom left increasing by one to the right.
+    """
+
+    square_num = int(square_num)
+    
+    rospy.loginfo("goto_square.py moving arm to square {}".format(square_num))
 
     try:
-        rospy.init_node('go_to_joint_angles_py')
         limb = Limb()
         traj = MotionTrajectory(limb = limb)
 
@@ -61,7 +68,7 @@ def goto_square(square_num):
                 'joint_angles': GRAB_POSITION[square_num - 1]
                 }
 
-        # send to pre location
+        # send to prep location
         wpt_opts = MotionWaypointOptions(max_joint_speed_ratio=prep_args['speed_ratio'],
                                          max_joint_accel=prep_args['accel_ratio'])
         waypoint = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
@@ -78,20 +85,12 @@ def goto_square(square_num):
         waypoint.set_joint_angles(joint_angles = prep_args['joint_angles'])
         traj.append_waypoint(waypoint.to_msg())
 
-        # result = traj.send_trajectory(timeout=prep_args['timeout'])
-        # if result is None:
-        #     rospy.logerr('Preparation trajectory FAILED to send')
-        #     return
-
         # send to grab location
         wpt_opts = MotionWaypointOptions(max_joint_speed_ratio=grab_args['speed_ratio'],
                                          max_joint_accel=grab_args['accel_ratio'])
         waypoint = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
 
         joint_angles = limb.joint_ordered_angles()
-
-        # waypoint.set_joint_angles(joint_angles = joint_angles)
-        # traj.append_waypoint(waypoint.to_msg())
 
         if len(grab_args['joint_angles']) != len(joint_angles):
             rospy.logerr('The number of grab joint_angles must be %d', len(joint_angles))
@@ -107,15 +106,16 @@ def goto_square(square_num):
 
         # results
         if result.result:
-            rospy.loginfo('Motion controller successfully finished the trajectory!')
+            rospy.loginfo('Motion controller successfully finished the trajectory.')
         else:
             rospy.logerr('Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
     except rospy.ROSInterruptException:
         rospy.logerr('Keyboard interrupt detected from the user. Exiting before trajectory completion.')
 
-
-if __name__ == "__main__":
+def main():
+    rospy.init_node('go_to_joint_angles_py')
+    rospy.loginfo("goto_square.py entered")
 
     parser = argparse.ArgumentParser(prog='goto_square.py', 
         description='Move to certain square number on table grid. Valid input is values 1 through 12 inclusive', 
@@ -125,3 +125,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     goto_square(args.square_num)
+
+    rospy.loginfo("goto_square.py exiting")
+
+if __name__ == "__main__":
+    main()

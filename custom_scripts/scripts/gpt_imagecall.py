@@ -1,100 +1,115 @@
 #!/usr/bin/env python
 
-# import requests
-# import json
-# import cv2
-# import base64
-# import os
 import rospy
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 import subprocess
+import json
+import inspect
 
-# API_KEY = os.getenv("OPEN_AI_API_KEY")
-# API_URL = 'https://api.openai.com/v1/chat/completions'
+LOG_PATH = "/home/student/ros_ws/src/custom_scripts/transcripts/log.json"
+PYTHON_VERSION = "python3.7"
+PYTHON3_7_SCRIPT_PATH = "/home/student/ros_ws/src/custom_scripts/python3_scripts/gpt_imagecall_py3.py"
+STARTUP_PATH = "/home/student/ros_ws/src/custom_scripts/transcripts/startup.json"
 transcription_buffer = None
 img_buffer = None
 publisher = None
-PYTHON_VERSION = "python3.7"
-PYTHON3_7_SCRIPT_PATH = "/home/student/ros_ws_py3/src/gspeech-master/scripts/gpt_imagecall_py3.py"
 
-# def gpt4_vision_response(image_path,prompt):
-#     url = API_URL
-#     headers = {
-#         "Authorization": "Bearer {}".format(API_KEY),
-#         "Content-Type": "application/json"
-#     }
-    
-#     # Read image from file
-#     image = cv2.imread(image_path)
-#     max_dim = 512  # Maximum dimension for resizing 
-#     height, width = image.shape[:2] 
-#     if max(height, width) > max_dim: 
-#         scale = max_dim / float(max(height, width)) 
-#         new_size = (int(width * scale), int(height * scale)) 
-#         image = cv2.resize(image, new_size)
-
-#     _, img_encoded = cv2.imencode('.jpg', image)
-#     img_base64 = base64.b64encode(img_encoded).decode('utf-8')
-
-#     data = { "model": "gpt-4-turbo", 
-#             "messages": [ {"role": "system", "content": "You are a helpful assistant."}, 
-#             {"role": "user", "content": prompt}, 
-#             {"role": "user", "content": "<img src='data:image/jpeg;base64,{}'>".format(img_base64)} ],"max_tokens": 150 }
-    
-#     response = requests.post(url, headers=headers, data=json.dumps(data))
-#     response_json = response.json()
-#     if 'choices' in response_json and len(response_json['choices']) > 0:
-#         return response_json['choices'][0]['message']['content'].strip()
-#     else:
-#         print(response)
-#         print(response_json)
-#         return "Error processing image"
+class GPTError(Exception):
+    def __init__(self, message="There was an error during the GPT process."):
+        self.message = message
+        super(GPTError, self).__init__(self.message)
 
 def call_gpt_py3():
+    """
+    Given both transcription text and image(s) have been received, 
+    start GPT API call.
+    Because ROS does not support Python 3 and OpenAI package, call subprocess
+    to find transcription.txt and transcription_img.jpg and use those.
+    Uses startup.json place before user input to provide context and few-shot learning.
+    Append GPT response to conversation log.
+    """
     global publisher
-    output = subprocess.check_output([PYTHON_VERSION, PYTHON3_7_SCRIPT_PATH])
-    print(output)
-    publisher.publish(output)
+    file_name = inspect.getfile(inspect.currentframe())
+    error_pub = rospy.Publisher('/gpt_errors', String, queue_size=10)
+    
+    try:
+        output = subprocess.check_output([PYTHON_VERSION, PYTHON3_7_SCRIPT_PATH])
+        rospy.loginfo("gpt_imagecall.py received API response:\n{}".format(output))
+        
+        messages = []
+        with open(LOG_PATH, 'r') as log:
+            messages = json.load(log)
+        messages.append(
+            {
+                "role": "assistant",
+                "content": {"type": "text", "text": output},
+            }
+        )
+        with open(LOG_PATH, 'w') as log:
+            json.dump(messages, log)
+        publisher.publish(output)
+
+    except subprocess.CalledProcessError as e:
+        error_message = "GPTError in {}: {}".format(file_name, e)
+        rospy.logerr(error_message)
+        error_pub.publish(error_message)
+    except Exception as e:
+        error_message = "An unexpected error occurred in {}: {}".format(file_name, e)
+        rospy.logerr(error_message)
+        error_pub.publish(error_message)
 
 def check_img_received(text):
+    """
+    After receiving transcription text, check to see if image has been received.
+    If yes, start GPT API call, then empty buffers.
+    If no, load buffer and wait.
+    """
     global transcription_buffer, img_buffer
     transcription_buffer = text.data
-    if(img_buffer == None):
-        print("Waiting for img")
+    if img_buffer is None:
+        rospy.loginfo("gpt_imagecall.py received transcription, waiting for image")
     else:
-        # print(img_buffer, transcription_buffer)
         call_gpt_py3()
         transcription_buffer = None
         img_buffer = None
 
 def check_transcription_received(img):
+    """
+    After receiving transcription image, check to see if text has been received.
+    If yes, start GPT API call, then empty buffers.
+    If no, load buffer and wait.
+    """
     global transcription_buffer, img_buffer
     img_buffer = img.data
-    if(transcription_buffer == None):
-        print("Waiting for transcription")
+    if transcription_buffer is None:
+        rospy.loginfo("gpt_imagecall.py received image, waiting for transcription")
     else:
-        # print(img_buffer, transcription_buffer)
         call_gpt_py3()
         transcription_buffer = None
         img_buffer = None
 
-# TODO: needs checking for if two images/transcriptions sent before counterpart
-
-if __name__ == '__main__':
-    # # Path to the image file
-    # image_path = '/home/student/Downloads/earth.jpg'
-    # prompt = "Describe the contents of the image"
-    
-    # response_text = gpt4_vision_response(image_path,prompt)
-    
-    # if response_text:
-    #     print("Response: {}".format(response_text))
-
-    print("gpt_imagecall.py looking for transcription and transcription image.")
+def main():
     rospy.init_node('gpt_imagecall')
+
+    rospy.loginfo("gpt_imagecall.py entered, looking for publish on /transcription and /transcription_img")
+    try:
+        with open(STARTUP_PATH, 'rb') as startup_file:
+            startup = json.load(startup_file)
+        with open(LOG_PATH, 'w') as log:
+            json.dump(startup, log)
+
+    except Exception as e:
+        rospy.logerr("An error occurred while initializing: {}".format(e))
+
+    global publisher
     publisher = rospy.Publisher("/gpt_response", String, queue_size=10)
-    rospy.Subscriber("/transcription", String, check_img_received)
+
+    rospy.Subscriber("/transcription", String, check_img_received, queue_size=2)
     rospy.Subscriber("/transcription_imgs", Image, check_transcription_received)
     rospy.spin()
 
+    rospy.loginfo("gpt_imagecall.py exiting")
+
+if __name__ == '__main__':
+    main()

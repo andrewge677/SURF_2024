@@ -67,21 +67,23 @@ GRAB_POSITION = [       # 12 squares with 7 joint angles each
 
 
 def grab(square_num):
+    """
+    Takes a square number 1-12 inclusive and grabs the object at that location.
+    Does not provide checking to see if gripper is open, or if object is present at location.
+    """
     square_num = int(square_num)
-
-    # rospy.loginfo(f"Grabbing object at square {square_num}")
 
     try:
         rospy.init_node('grab_py')
+        rospy.loginfo("grab.py entered")
+
         limb = Limb()
         down_traj = MotionTrajectory(limb=limb)
-
         prep_args = {'speed_ratio': 0.5,
                      'accel_ratio': 0.5,
                      'timeout': None,
                      'joint_angles': PREP_POSITION[square_num - 1]
                      }
-
         grab_args = {'speed_ratio': 0.5,
                      'accel_ratio': 0.5,
                      'timeout': None,
@@ -138,18 +140,6 @@ def grab(square_num):
         except subprocess.CalledProcessError as e:
             rospy.logerr("Error calling close_gripper.py from grab.py: {}".format(e))
 
-        # # move to prep location
-        # up_traj = MotionTrajectory(limb=limb)
-
-        # waypoint.set_joint_angles(joint_angles=prep_args['joint_angles'])
-        # up_traj.append_waypoint(waypoint.to_msg())
-
-        # # send trajectory
-        # result = up_traj.send_trajectory(timeout=prep_args['timeout'])
-        # if result is None:
-        #     rospy.logerr('Up trajectory FAILED to send')
-        #     return
-
         # move to neutral
         try:
             subprocess.check_output(['python', '/home/student/ros_ws/src/custom_scripts/scripts/goto_table_neutral.py'])
@@ -157,7 +147,7 @@ def grab(square_num):
             rospy.logerr("Error calling goto_table_neutral.py from grab.py: {}".format(e))
 
         if result.result:
-            rospy.loginfo("grab.py finished successfully.")
+            rospy.loginfo("grab.py finished successfully")
         else:
             rospy.logerr('Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
@@ -165,16 +155,18 @@ def grab(square_num):
     except rospy.ROSInterruptException:
         rospy.logerr(
             'Keyboard interrupt detected from the user. Exiting before trajectory completion.')
-        
+    
+    rospy.loginfo("grab.py exiting")
+    
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(prog='grab.py',
-                                     description='Grab item from grid square. ',
+                                     description='Grab item from grid square.',
                                      epilog='Made by Andrew Ge, SURF 2024')
 
     parser.add_argument(
-        'square_num', help="pickup item at square numbered 1 through 12, inclusive, does not contain error checking for already holding item")
+        'square_num', help="pickup item at square numbered 1 through 12, inclusive, does not contain error checking for if already holding item, or if gripper is closed.")
 
     args = parser.parse_args()
     grab(args.square_num)

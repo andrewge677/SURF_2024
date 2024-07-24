@@ -1,0 +1,102 @@
+[
+    {
+        "role": "system",
+        "content": "You are a helpful assistant."
+    },
+    {
+        "role": "user",
+        "content": "Are you ready to start? Please give a brief summary with each response of the image I send. I am sending an empty grid that we will continue to use."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I currently see a white table with a grid that is three spaces high and four spaces wide. The squares are labeled with numbers one through twelve increasing from left to right. The bottom row has spaces one through four, the middle row has spaces five through eight, and the top row has spaces nine through twelve. The things outside the grid are not relevant. There are no items on the grid.\nspeak: Yes.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "That is correct. I am going to give you the actions you can take. grab(n), which takes int n, moves to the corresponding space, and closes its gripper. place(n), which takes in n, moves to the corresponding space, and opens its gripper. done() is always called at the end when you are finished. If you understand, please recite each row of the grid, starting at the top left corner, and ending in the bottom right corner."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid.\nspeak: I understand, the grid consist of the following, Top row: 9,10,11,12; Middle row: 5,6,7,8; bottom row: 1,2,3,4.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "This was correct. Now I am going to demonstrate a procedure step by step, between which you can ask questions if something is ambiguous or unclear. Afterwards I want you to demonstrate the whole procedure back to me. Your starting grid may be slightly different than mine. Please acknowledge that you understand."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a starting configuration of a red triangle in space one, and a red square in space twelve.\nspeak: I understand, please proceed.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "I am going to swap the objects in space one and space twelve. First I will grab the object in space one and place it in any unoccupied space, the location does not matter as long as it is unoccupied."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a red triangle in space two, and a red square in space twelve. The red triangle was moved from space one to space two.\nspeak: I understand, please proceed.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "Now I can move the second object to the first object's original space."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a red triangle in space two, and a red square in space twelve. The red square was moved from space twelve to space one.\nspeak: Was the red triangle considered object one, and the red square considered object two?\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "Yes, this is correct."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a red square in space one, and a red triangle in space two.\nspeak: Understood, please proceed.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "Finally I will move the red triangle, object one, from its temporary space in space two, to space twelve. This concludes the demonstration"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a red square in space one, and a red triangle in space twelve.\nspeak: Understood, please proceed.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "I have now set up the board for you to repeat my demonstration. The starting grid objects may not be the same. I will issue corrections where needed, and expect you to try that step again. Please proceed."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a red triangle in space one, a blue square in space two, and a red square in space twelve.\nspeak: I will first move the red triangle to space two before I swap the two.\nactions: grab(1) place(2) done()"
+    },
+    {
+        "role": "user",
+        "content": "This was incorrect, as there is an object in square two. Please remember that you can use any empty space to temporarily hold objects when swapping and that if an object is detected in a space, it cannot be used. Please try this step again."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a red triangle in space one, a blue square in space two, and a red square in space twelve.\nspeak: I will instead try to move the red triangle to space three, as space two is occupied, and I can use any empty space as a temporary holding space while swapping.\nactions: grab(1) place(3) done()"
+    },
+    {
+        "role": "user",
+        "content": "Good, continue."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a blue square in space two, a red triangle in space three, and a red square in space twelve.\nspeak: I will now move the red square from space twelve to space one.\nactions: grab(12) place(1) done()"
+    },
+    {
+        "role": "user",
+        "content": "Yes, that is correct."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a red square in space one, a blue square in space two, and a red triangle in space three.\nspeak: Now I will move the red triangle from the temporary space in space three to space twelve.\nactions: grab(3) place(12) done()"
+    },
+    {
+        "role": "user",
+        "content": "What is next? That was correct."
+    },
+    {
+        "role": "assistant",
+        "content": "summary: I see the grid with a red square in space one, a blue square in space two, and a red triangle in space twelve.\nspeak: I am now finished.\nactions: done()"
+    }
+]

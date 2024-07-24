@@ -6,23 +6,29 @@ import rospy
 from intera_interface import (
     SimpleClickSmartGripper,
     get_current_gripper_interface,
-    Cuff,
-    RobotParams,
+    Cuff
 )
 
+VALID_LIMB = "right"
+
 class GripperController(object):
+    """
+    GripperController object for intializing custom gripper and closing gripper.
+
+    Pass name of limb to use as gripper as str. If does not initialize, 
+    can run close_gripper.py (even if gripper already closed) to help 
+    initialize when booting up
+    """ 
 
     def __init__(self,arm):
-        print("Entered init")
         self._arm = arm
         self._cuff = Cuff(limb=arm)
-
         self._gripper = get_current_gripper_interface()
         self._is_clicksmart = isinstance(self._gripper, SimpleClickSmartGripper)
 
         if self._is_clicksmart:
              if self._gripper.needs_init():
-                  print("Clicksmart gripper needs initialization")
+                  rospy.loginfo("open_gripper.py Clicksmart gripper needs initialization")
                   self._gripper.initialize()
         else:
              if not (self._gripper.is_calibrated() or self._gripper.calibrate() == True):
@@ -30,16 +36,14 @@ class GripperController(object):
         
         self._gripper.set_ee_signal_value('grip', False)
 
-        rospy.signal_shutdown('Program done.')
+        rospy.signal_shutdown('open_gripper.py finished init')
 
 def main():
-    print("Entered main")
-    valid_limbs = "right"
     rospy.init_node("open_gripper")
-
-    grip_ctrl = GripperController(valid_limbs)
-
+    rospy.loginfo("open_gripper.py entered")
+    GripperController(VALID_LIMB)
     rospy.spin()
+    rospy.loginfo("open_gripper.py entered")
 
 if __name__ == "__main__":
 	main()

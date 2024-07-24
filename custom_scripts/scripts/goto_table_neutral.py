@@ -3,7 +3,6 @@
 # code copied from intera_examples
 
 import rospy
-import argparse
 from intera_motion_interface import (
     MotionTrajectory,
     MotionWaypoint,
@@ -11,10 +10,11 @@ from intera_motion_interface import (
 )
 from intera_interface import Limb
 
-def main():
-
+def goto_table_neutral():
+    """
+    goto_table_neutral primes arm to execute goto_square
+    """
     try:
-        rospy.init_node('go_to_joint_angles_py')
         limb = Limb()
         traj = MotionTrajectory(limb = limb)
 
@@ -34,7 +34,7 @@ def main():
         traj.append_waypoint(waypoint.to_msg())
 
         if len(args['joint_angles']) != len(joint_angles):
-            rospy.logerr('The number of joint_angles must be %d', len(joint_angles))
+            rospy.logerr('goto_table_neutral.py The number of joint_angles must be %d', len(joint_angles))
             return None
 
         waypoint.set_joint_angles(joint_angles = args['joint_angles'])
@@ -42,17 +42,22 @@ def main():
 
         result = traj.send_trajectory(timeout=args['timeout'])
         if result is None:
-            rospy.logerr('Trajectory FAILED to send')
+            rospy.logerr('goto_table_neutral.py Trajectory FAILED to send')
             return
 
         if result.result:
-            rospy.loginfo('Motion controller successfully finished the trajectory!')
+            rospy.loginfo('goto_table_neutral.py went to table neutral position successfully')
         else:
-            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+            rospy.logerr('goto_table_neutral.py Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
     except rospy.ROSInterruptException:
-        rospy.logerr('Keyboard interrupt detected from the user. Exiting before trajectory completion.')
+        rospy.logerr('goto_table_neutral.py Keyboard interrupt detected from the user. Exiting before trajectory completion.')
 
+def main():
+    rospy.init_node('goto_table_neutral')
+    rospy.loginfo("goto_table_neutral.py entered")
+    goto_table_neutral()
+    rospy.loginfo("goto_table_neutral.py exiting")
 
 if __name__ == '__main__':
     main()

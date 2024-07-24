@@ -26,7 +26,7 @@ PREP_POSITION = [       # 12 squares with 7 joint angles each
     [0.4317978515625, 1.078619140625, -1.7984306640625, 1.6688408203125,
      2.6443994140625, 1.7579921875, 2.2975810546875],
     [0.076755859375, 0.927478515625, -1.563009765625, 1.5769638671875, 2.5179501953125,
-     1.527080078125, 1.8005234375],                         # FILL THESE OUT
+     1.527080078125, 1.8005234375],                        
     [-0.574828125, 0.691302734375, -1.6605166015625, 1.112564453125,
      2.25557421875, 1.38238671875, 1.64798046875],
     [0.274193359375, 0.607818359375, -2.03475390625, 0.5802646484375,
@@ -38,7 +38,7 @@ PREP_POSITION = [       # 12 squares with 7 joint angles each
     [-0.8537294921875, 0.5310166015625, -1.9386640625,
      0.3382197265625, 2.11775, 1.154818359375, 2.10502734375]
 ]
-GRAB_POSITION = [       # 12 squares with 7 joint angles each
+PLACE_POSITION = [       # 12 squares with 7 joint angles each
     [1.1646865234375, 0.264515625, -0.82244921875, 1.53290234375,
         1.971998046875, 0.9239580078125, 2.61269921875],
     [0.89208203125, 1.142859375, -1.2847998046875, 1.8781025390625,
@@ -67,12 +67,16 @@ GRAB_POSITION = [       # 12 squares with 7 joint angles each
 
 
 def place(square_num):
-    square_num = int(square_num)
+    """
+    Takes a square number 1-12 inclusive and places the object at that location.
+    Does not provide checking to see if object is held, or if space is empty.
+    """
 
-    # rospy.loginfo(f"Placing object at square {square_num}")
+    square_num = int(square_num)
 
     try:
         rospy.init_node('place_py')
+        rospy.loginfo("place.py entered")
         limb = Limb()
         down_traj = MotionTrajectory(limb=limb)
 
@@ -85,7 +89,7 @@ def place(square_num):
         grab_args = {'speed_ratio': 0.5,
                      'accel_ratio': 0.5,
                      'timeout': None,
-                     'joint_angles': GRAB_POSITION[square_num - 1]
+                     'joint_angles': PLACE_POSITION[square_num - 1]
                      }
 
         # map prep waypoints
@@ -100,7 +104,7 @@ def place(square_num):
 
         if len(prep_args['joint_angles']) != len(joint_angles):
             rospy.logerr(
-                'The number of preparation joint_angles must be %d', len(joint_angles))
+                'place.py  The number of preparation joint_angles must be %d', len(joint_angles))
             return None
 
         waypoint.set_joint_angles(joint_angles=prep_args['joint_angles'])
@@ -115,7 +119,7 @@ def place(square_num):
 
         if len(grab_args['joint_angles']) != len(joint_angles):
             rospy.logerr(
-                'The number of grab joint_angles must be %d', len(joint_angles))
+                'place.py  The number of place joint_angles must be %d', len(joint_angles))
             return None
 
         waypoint.set_joint_angles(joint_angles=grab_args['joint_angles'])
@@ -124,19 +128,19 @@ def place(square_num):
         # send trajectory
         result = down_traj.send_trajectory(timeout=grab_args['timeout'])
         if result is None:
-            rospy.logerr('Downwards grab trajectory FAILED to send')
+            rospy.logerr('place.py  Downwards place trajectory FAILED to send')
             return
 
         # results
         if not result.result:
-            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+            rospy.logerr('place.py  Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
 
         # place object
         try:
             subprocess.check_output(['python', '/home/student/ros_ws/src/custom_scripts/scripts/open_gripper.py'])
         except subprocess.CalledProcessError as e:
-            rospy.logerr("Error calling open_gripper.py from grab.py: {}".format(e))
+            rospy.logerr("place.py  Error calling open_gripper.py from place.py: {}".format(e))
 
         # move to prep location
         up_traj = MotionTrajectory(limb=limb)
@@ -147,24 +151,26 @@ def place(square_num):
         # send trajectory
         result = up_traj.send_trajectory(timeout=prep_args['timeout'])
         if result is None:
-            rospy.logerr('Up trajectory FAILED to send')
+            rospy.logerr('place.py  Up trajectory FAILED to send')
             return
 
         # move to neutral
         try:
             subprocess.check_output(['python', '/home/student/ros_ws/src/custom_scripts/scripts/goto_table_neutral.py'])
         except subprocess.CalledProcessError as e:
-            rospy.logerr("Error calling goto_table_neutral.py from grab.py: {}".format(e))
+            rospy.logerr("place.py  Error calling goto_table_neutral.py from place.py: {}".format(e))
 
         if result.result:
-            rospy.loginfo("grab.py finished successfully.")
+            rospy.loginfo("place.py finished successfully.")
         else:
-            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+            rospy.logerr('place.py  Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
 
     except rospy.ROSInterruptException:
         rospy.logerr(
-            'Keyboard interrupt detected from the user. Exiting before trajectory completion.')
+            'place.py Keyboard interrupt detected from the user. Exiting before trajectory completion.')
+        
+    rospy.loginfo("place.py exiting")
         
 
 if __name__ == "__main__":

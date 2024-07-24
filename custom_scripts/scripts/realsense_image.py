@@ -5,6 +5,9 @@ from cv_bridge import CvBridge, CvBridgeError
 import cv2
 
 class ImageCapture:
+    """
+    Takes photo using realsense camera.
+    """
     def __init__(self):
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber('/camera/color/image_raw', Image, self.image_callback)
@@ -27,19 +30,20 @@ class ImageCapture:
 
 def main():
     rospy.init_node('image_capture', anonymous=True)
-    image_capture = ImageCapture()
-    
+    rospy.loginfo("realsense_image.py entered")
+
     # Ensure the ROS node waits for the image topic to be available
-    rospy.loginfo("Waiting for image topic...")
+    rospy.loginfo("realsense_image.py Waiting for image topic...")
 
     try:
         rospy.wait_for_message('/camera/color/image_raw', Image, timeout=10)
-        rospy.loginfo("Image topic detected. Capturing image...")
+        rospy.loginfo("realsense_image.py Image topic detected. Capturing image...")
     except rospy.ROSException as e:
-        rospy.logerr("Timeout waiting for image topic. Ensure the topic is being published: %s", e)
+        rospy.logerr("realsense_image.py Timeout waiting for image topic. Ensure the topic is being published: %s", e)
         rospy.signal_shutdown("Timeout waiting for image topic")
 
     rospy.spin()
+    rospy.loginfo("realsense_image.py exiting")
 
 if __name__ == '__main__':
     main()

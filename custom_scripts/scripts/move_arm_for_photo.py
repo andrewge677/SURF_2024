@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# code copied from intera_examples
+# Code modified from intera_examples
 
 import rospy
 import argparse
@@ -14,7 +14,8 @@ from intera_interface import Limb
 def main():
 
     try:
-        rospy.init_node('move_arm_for_photo_py')
+        rospy.init_node('move_arm_for_photo')
+        rospy.loginfo("move_arm_for_photo.py entered")
         limb = Limb()
         traj = MotionTrajectory(limb = limb)
 
@@ -34,7 +35,7 @@ def main():
         traj.append_waypoint(waypoint.to_msg())
 
         if len(args['joint_angles']) != len(joint_angles):
-            rospy.logerr('The number of joint_angles must be %d', len(joint_angles))
+            rospy.logerr('move_arm_for_photo.py The number of joint_angles must be %d', len(joint_angles))
             return None
 
         waypoint.set_joint_angles(joint_angles = args['joint_angles'])
@@ -42,16 +43,18 @@ def main():
 
         result = traj.send_trajectory(timeout=args['timeout'])
         if result is None:
-            rospy.logerr('Trajectory FAILED to send')
+            rospy.logerr('move_arm_for_photo.py Trajectory FAILED to send')
             return
 
         if result.result:
-            rospy.loginfo('Motion controller successfully finished the trajectory!')
+            rospy.loginfo('move_arm_for_photo.py move_arm_for_photo.py successfully moved arm for photo')
         else:
-            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+            rospy.logerr('move_arm_for_photo.py Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
     except rospy.ROSInterruptException:
-        rospy.logerr('Keyboard interrupt detected from the user. Exiting before trajectory completion.')
+        rospy.logerr('move_arm_for_photo.py Keyboard interrupt detected from the user. Exiting before trajectory completion.')
+
+    rospy.loginfo("move_arm_for_photo.py exiting")
 
 
 if __name__ == '__main__':
