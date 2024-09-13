@@ -1,0 +1,254 @@
+[
+    {
+        "role": "system",
+        "content": "You are a robot that controls a robotic arm that interacts with a grid and responds in a fixed format: a line for a summary of the image that was just sent to you, a line for reasoning that will be spoken aloud, and a line for calling the actions grab, place, and done. Follow these instructions: 1. Always ask for clarification when confused or when inconsistent information is provided. 2. Always reply in the same response format. 3. There can be one object in a space or it can be empty."
+    },
+    {
+        "role": "user",
+        "content": "demonstration one will begin now"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I understand the next demonstration is beginning. Therefore there are no actions for me to take right now and I can simply call done in the actions. I am ready to continue learning.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "this task I will now teach you is simply moving the object you can see to space one it may not always be in the space you see right now or be the same object"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 contains a blue square. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I currently see a blue square in space 9, and understand it will be moved to space 1. I also understand it may not always start in space 9 and be a blue square for this demonstration. For example it may be a green circle in space 10. I am ready continue learning.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "I am moving the blue square to space one"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue square. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I see you have moved the blue square to space 1. I have a question: what happens if the object is already in space 1 to begin with? \nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "if the object is already in the first space you do not need to move anything and are done already"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue square. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: Thank you for answering my question. I am ready to continue learning.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "demonstration one is now done please summarize what you have learned"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: Demonstration one moves the object on the grid to space 1. The object can start in any space, including space 1. If it starts in space 1, then I am already done. I am finished when the object is in space 1. An example would be starting with a red square in space 12, and grabbing and placing it in space 1.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "remember the shape may not be the same each time now begin demonstration one"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 contains a green circle. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I see a green circle in space 3, so I will move that object to space 1.\nactions: grab(3) place(1) done()"
+    },
+    {
+        "role": "user",
+        "content": "good please proceed"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a green circle. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I see the green circle I moved is in space 1, which means I am finished. There is nothing left to do.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "that was correct this concludes demonstration one we will now start demonstration two"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I understand we are starting demonstration two which will contain new directions and information. I am ready to learn.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "in this demonstration I will teach you how to swap two objects they may not always start in these spaces and may not always be these two particular objects"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 contains a blue circle. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 contains a green triangle. Space 11 is empty. Space 12 is empty.\nspeak: I understand I will be learning how to swap two object in this demonstration, and they may not always be in these starting spaces or be these particular objects. While I see a blue circle in space 3 and a green triangle in space 10, in the future it might be a red circle in space 5 and a green square in space 11. Please proceed.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "I am now moving one object to a temporary space since I cannot place it in a space that is already occupied"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue circle. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 contains a green triangle. Space 11 is empty. Space 12 is empty.\nspeak: I see you have moved the blue circle from space 3 to space 1 which is a temporary space. I have a question: does the temporary space have to be space 1?\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "no the temporary space can be any empty space"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue circle. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 contains a green triangle. Space 11 is empty. Space 12 is empty.\nspeak: I understand now that any space that is empty can be used as a temporary space. For example, you could have used space 2 as a temporary space because it was empty. Thank you for answering my question, please proceed.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "next I will move the other object to the first objects original space"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue circle. Space 2 is empty. Space 3 contains a green triangle. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I understand that you moved the green triangle to space 3 because that was where the blue circle was originally, and can now be done since the blue circle is moved to a temporary space. Please proceed.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "finally I move the blue circle out of the temporary space and into the second objects original space"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 contains a green triangle. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 contains a blue circle. Space 11 is empty. Space 12 is empty.\nspeak: I understand the blue circle started in space 3 and the green triangle in space 10, and now they have swapped positions with the help of the temporary space. Please proceed.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "I have now completed this demonstration please summarize it to me"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: Demonstration two teaches me how to swap to objects, which may be any shape and start in any space. I first need to move the first object to a temporary space, which can be any empty space. Next I move the second object to the first object's starting space. Finally I move the first object out of the temporary space and into the second object's space. I am done when the first object is in the second object's space, and the second object is in the first object's space.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "good, now show this to me step by step"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a red square. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 contains a green square. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I see the first object, a red square, in space 1 and the second object, a green square, in space 9. I need to place the red square into space 9 and the green square in space 1. I will need a temporary space to perform the swap, so I will use space 2 because it is empty. I am now moving the red square from space 1 to space 2.\nactions: grab(1) place(2) done()"
+    },
+    {
+        "role": "user",
+        "content": "good continue"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 contains a red square. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 contains a green square. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: Now that the first object is in the temporary space, I can move the second object to the first object's original space. I am moving the second object, the green square, to space 1, where the red square originally was.\nactions: grab(9) place(1) done()"
+    },
+    {
+        "role": "user",
+        "content": "good continue"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a green square. Space 2 contains a red square. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: Now I can move the first object, the red square, out of the temporary space, and into the second object's original space.\nactions: grab(2) place(9) done()"
+    },
+    {
+        "role": "user",
+        "content": "good continue"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a green square. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 contains a red square. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: Now that the two objects are in each other's starting spaces, the demonstration is finished.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "good we will now move on to demonstration three"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I understand the next demonstration is beginning. Therefore there are no actions for me to take right now and I can simply call done in the actions. I am ready to continue learning.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "in this demonstration we will move an object to space six while moving objects out of the way when needed the object we are moving will always start in space one"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue triangle. Space 2 contains a red square. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 contains a blue circle. Space 11 is empty. Space 12 is empty.\nspeak: I see a blue triangle in space 1, a red square in space 2, and a blue circle in space 10. I understand that we will be moving an object to space 6 while moving objects out of the way when needed. Continue.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "I will now move the our object the blue triangle to space two because space two was already occupied I need to move the object that was in space two elsewhere so that the blue triangle can move there"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 contains a blue triangle. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 contains a red square. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 contains a blue circle. Space 11 is empty. Space 12 is empty.\nspeak: I see you moved our object the blue triangle to space 2, and because space 2 was occupied, you moved the occupying object elsewhere, in this case the red square to space 6. \nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "I will now move the object we are trying to move to space three space three is not occupied so there is no need to move objects out of the way"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 contains a blue triangle. Space 4 is empty. Space 5 is empty. Space 6 contains a red square. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 contains a blue circle. Space 11 is empty. Space 12 is empty.\nspeak: I see you moved the blue triangle from space 2 to space 3, and did not have to move any objects out of space 3 because it was empty already. Please proceed.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "I would continue this, moving any objects that were in the way to any other empty square when the object I am moving from square one is in square six I will be finished"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I understand you would continue to move the object that started in space 1 to the next space until it was in space 6, and then you would be finished. You would continue to move objects in the way to other empty spaces.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "this demonstration is finished please summarize what you have learned"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I am to move the object in space 1 across all spaces until it reaches space 12, after which I will be finished. If there are objects that are in the way, then I will move them to any empty space. For example, if I need to move my object to space 4 and there is a green circle, there, I can move the green circle to space 1 if it is empty.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "good now start your demonstration"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a red square. Space 2 contains a blue triangle. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 contains a red triangle.\nspeak: I see a red square in space 1, which I will move through the spaces until it reaches space 12. I want to move it to space 2, but because space 2 contains a blue triangle, I first need to move the blue triangle to any empty space. I see space three is empty, so I will move it there.\nactions: grab(2) place(3) grab(1) place(3) done()"
+    },
+    {
+        "role": "user",
+        "content": "good what is next"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue triangle. Space 2 contains a red square. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 contains a red triangle.\nspeak: I am moving the red square through the spaces, so I want to move it to space 3 next. However, space 3 is occupied, so I will move the object in space 3 to any empty space. I see space 1 is empty, so I will move it there.\nactions: grab(3) place(1) grab(2) place(3) done()"
+    },
+    {
+        "role": "user",
+        "content": "good what is next"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue triangle. Space 2 is empty. Space 3 contains a red square. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 contains a red triangle.\nspeak: I will move the red square in space 3 to the next space, space 4. Space 4 is empty, so I do not have to move any object out of the way.\nactions: grab(3) place(4)"
+    },
+    {
+        "role": "user",
+        "content": "good what is next"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue triangle. Space 2 is empty. Space 3 is empty. Space 4 contains a red square. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 contains a red triangle.\nspeak: I will move the red square in space 4 to the next space, space 5. Space 5 is empty, so I do not have to move any object out of the way.\nactions: grab(4) place(5)"
+    },
+    {
+        "role": "user",
+        "content": "good what is next"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue triangle. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 contains a red square. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 contains a red triangle.\nspeak: I will move the red square in space 5 to the next space, space 6. Space 6 is empty, so I do not have to move any object out of the way.\nactions: grab(5) place(6)"
+    },
+    {
+        "role": "user",
+        "content": "good what is next"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 contains a blue triangle. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 contains a red square. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 contains a red triangle.\nspeak: I see the object that started in space 1, the red square, is now in space 6, so I am finished.\nactions: done()"
+    },
+    {
+        "role": "user",
+        "content": "we are starting on demonstration 4"
+    },
+    {
+        "role": "assistant",
+        "content": "summary: Space 1 is empty. Space 2 is empty. Space 3 is empty. Space 4 is empty. Space 5 is empty. Space 6 is empty. Space 7 is empty. Space 8 is empty. Space 9 is empty. Space 10 is empty. Space 11 is empty. Space 12 is empty.\nspeak: I understand the next demonstration is beginning. Therefore there are no actions for me to take right now and I can simply call done in the actions. I am ready to continue learning.\nactions: done()"
+    }
+]
