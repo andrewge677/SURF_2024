@@ -1,1 +1,1 @@
-now move the Red Square to space one
+drive to me in every single numbered space what item is inside that space if any for example Space 1 has a yellow circle and space to is empty do this for all 12 spaces

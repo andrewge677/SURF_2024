@@ -69,7 +69,7 @@ def listen_and_transcribe(transcription_node):
         num_failures = 0
         rate = rospy.Rate(1.0/SECONDS_OF_SLEEP)  # Adjust the rate as needed (0.1 Hz means it will run every 10 seconds)
 
-        while num_failures < 10:
+        while num_failures < 20:
             if robot_is_free:
                 lights.set_light_state(LIGHT_NAME, on=False)
                 with mic as source:
@@ -121,7 +121,7 @@ def listen_and_transcribe(transcription_node):
             else:
                 rospy.loginfo("speech_to_text_base.py waiting for robot to complete step")
                 num_failures += 1
-                if(num_failures > 100):
+                if(num_failures > 1000):
                     break
                 rate.sleep()
         shutdown_hook()

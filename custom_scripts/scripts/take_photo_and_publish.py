@@ -12,7 +12,10 @@ import inspect
 
 HEAD_CAMERA_TOPIC = "/io/internal_camera/head_camera/image_rect_color"
 REALSENSE_CAMERA_TOPIC = "/camera/color/image_raw"
-
+START_Y = 150
+END_Y = 380
+START_X = 100
+END_X = 540
 
 class PhotoError(Exception):
     def __init__(self, message="An error occurred while taking the photo."):
@@ -71,6 +74,7 @@ class PhotoTakerPublisher:
                 else:
                     rospy.loginfo("take_photo_and_publish.py encoding not recognized")
 
+                image_array = image_array[START_Y:END_Y, START_X:END_X]
                 cv2.imwrite("/home/student/ros_ws/src/custom_scripts/images/{}.jpg".format(filename), image_array)
                 
                 # if colors are wrong, switch encoding to 'rgb8'
